@@ -1,0 +1,223 @@
+/* Mobile-First Enhancements */
+
+/* Base adjustments for better mobile experience */
+:root {
+    /* Slightly increase touch target sizes */
+    --touch-size: 44px;
+}
+
+/* Body and typography adjustments */
+body {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* Remove tap highlight on iOS */
+    touch-action: manipulation;  /* Disable double-tap zoom */
+    font-size: 16px;  /* Ensure base font size is readable */
+}
+
+/* Header improvements */
+header {
+    padding: 1rem;
+}
+
+.logo h1 {
+    font-size: 1.6rem;
+}
+
+/* Mobile-optimized navigation */
+nav ul {
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+nav li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+}
+
+nav li i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Form improvements for mobile */
+input, select, textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 0.8rem;
+    min-height: var(--touch-size);
+}
+
+/* More vertical space in mobile forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Improved rating interaction for touch */
+.star-rating i {
+    font-size: 2rem; /* Larger touch targets */
+    padding: 0.3rem;
+    margin: 0 0.1rem;
+}
+
+/* Better buttons for touch */
+.btn {
+    min-height: var(--touch-size);
+    padding: 0.8rem 1.5rem;
+}
+
+/* Modal adjustments */
+.modal-content {
+    width: 95%;
+    max-height: 80vh;
+    border-radius: 12px;
+}
+
+.close-modal {
+    width: var(--touch-size);
+    height: var(--touch-size);
+}
+
+/* Better image handling on mobile */
+.wine-image-large {
+    height: 250px;
+}
+
+/* Wine card touch improvements */
+.wine-card {
+    border-radius: 10px;
+}
+
+.wine-card-image {
+    height: 160px;
+}
+
+/* Better spacing on mobile */
+main {
+    padding: 1.2rem;
+}
+
+/* Fixed FAB for quick access */
+.fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 90;
+    transition: all 0.3s ease;
+}
+
+.fab i {
+    font-size: 1.5rem;
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 576px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .wine-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .wine-ratings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .collection-filters {
+        padding: 1rem;
+    }
+    
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+    
+    /* Show app-like bottom navigation on mobile */
+    .mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+    }
+    
+    .mobile-nav ul {
+        display: flex;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    
+    .mobile-nav li {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.8rem 0;
+        color: var(--text-light);
+    }
+    
+    .mobile-nav li.active {
+        color: var(--primary-color);
+    }
+    
+    .mobile-nav i {
+        font-size: 1.4rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .mobile-nav span {
+        font-size: 0.8rem;
+    }
+    
+    /* Add padding at bottom to account for mobile nav */
+    main {
+        padding-bottom: 4.5rem;
+    }
+    
+    footer {
+        margin-bottom: 3.5rem;
+    }
+}
+
+/* iPhone SE and other small devices */
+@media (max-width: 375px) {
+    .stat-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .stat-card p {
+        font-size: 1.8rem;
+    }
+}
