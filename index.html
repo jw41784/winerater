@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="mobile-enhancements.css">
     <link rel="stylesheet" href="auth-styles.css">
     <link rel="stylesheet" href="visual-improvements.css">
+    <link rel="stylesheet" href="background-circles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -26,6 +27,16 @@
     <meta name="theme-color" content="#8B0000">
 </head>
 <body>
+    <!-- Background Circles -->
+    <div class="background-circles-container">
+        <div class="background-circles">
+            <div class="background-circle"></div>
+            <div class="background-circle"></div>
+            <div class="background-circle"></div>
+            <div class="background-circle"></div>
+        </div>
+    </div>
+
     <!-- Authentication UI -->
     <!-- Include the auth UI components -->
     <div id="auth-container" class="auth-container">
@@ -548,6 +559,7 @@
     <script src="export.js"></script>
     <script src="app-cloud.js"></script>
     <script src="animation-enhancer.js"></script>
+    <script src="background-circles.js"></script>
     <script>
         // Initialize Firebase with your config
         const firebaseConfig = {

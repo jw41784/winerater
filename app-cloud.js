@@ -357,7 +357,7 @@ const WineRater = {
         if (desktopNavItem) {
             desktopNavItem.classList.add('active');
         }
-        
+
         // Update active navigation for mobile
         document.querySelectorAll('.mobile-nav li').forEach(li => {
             li.classList.remove('active');
@@ -366,12 +366,18 @@ const WineRater = {
         if (mobileNavItem) {
             mobileNavItem.classList.add('active');
         }
-        
+
         // Update active view
         document.querySelectorAll('.view').forEach(section => {
             section.classList.remove('active');
         });
         document.getElementById(view).classList.add('active');
+
+        // Dispatch view change event for other components to react
+        const viewChangedEvent = new CustomEvent('viewChanged', {
+            detail: { view: view }
+        });
+        document.dispatchEvent(viewChangedEvent);
     },
     
     // Handle star ratings
