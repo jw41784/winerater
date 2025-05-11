@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WineRater</title>
-    <meta name="description" content="Track and rate your wine experiences">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WineRater | Your Wine Journal</title>
+    <meta name="description" content="Track and rate your wine experiences with WineRater, your personal wine journal">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="styles-new.css">
+    <link rel="stylesheet" href="mobile-enhancements.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -14,17 +18,133 @@
     <meta name="theme-color" content="#8B0000">
 </head>
 <body>
-    <div class="app-container">
+    <!-- Authentication UI -->
+    <!-- Include the auth UI components -->
+    <div id="auth-container" class="auth-container">
+        <div class="auth-header">
+            <div class="logo">
+                <i class="fas fa-wine-glass-alt"></i>
+                <h1>WineRater</h1>
+            </div>
+            <p class="auth-tagline">Your personal wine journal</p>
+        </div>
+    
+        <div class="auth-content">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Create Account</button>
+            </div>
+    
+            <div class="tab-content active" id="login-tab">
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Sign In</button>
+                    </div>
+                    <div class="form-footer">
+                        <a href="#" id="forgot-password-link">Forgot password?</a>
+                    </div>
+                </form>
+    
+                <div class="social-login">
+                    <p>Or sign in with</p>
+                    <div class="social-buttons">
+                        <button id="google-signin" class="social-btn google">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button id="apple-signin" class="social-btn apple">
+                            <i class="fab fa-apple"></i> Apple
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="tab-content" id="register-tab">
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" name="displayName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" name="password" required minlength="6">
+                        <p class="password-requirements">Password must be at least 6 characters</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password-confirm">Confirm Password</label>
+                        <input type="password" id="register-password-confirm" name="confirmPassword" required minlength="6">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn primary">Create Account</button>
+                    </div>
+                </form>
+    
+                <div class="terms-privacy">
+                    <p>By creating an account, you agree to our <a href="#" id="terms-link">Terms of Service</a> and <a href="#" id="privacy-link">Privacy Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="auth-footer">
+            <p>&copy; 2025 WineRater. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Main App Container (hidden until authenticated) -->
+    <div id="app-container" class="app-container" style="display:none;">
         <header>
             <div class="logo">
                 <i class="fas fa-wine-glass-alt"></i>
                 <h1>WineRater</h1>
             </div>
-            <nav>
+            <!-- User Menu -->
+            <div class="user-menu">
+                <div class="user-menu-trigger" id="user-menu-trigger">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span id="user-display-name">User</span>
+                    <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 0.8rem;"></i>
+                </div>
+                <div class="user-menu-dropdown" id="user-menu-dropdown">
+                    <div class="user-info">
+                        <div class="user-name" id="dropdown-user-name">User Name</div>
+                        <div class="user-email" id="dropdown-user-email">user@example.com</div>
+                    </div>
+                    <a href="#" class="user-menu-item" id="account-settings">
+                        <i class="fas fa-cog"></i> Account Settings
+                    </a>
+                    <a href="#" class="user-menu-item" id="backup-restore">
+                        <i class="fas fa-cloud-upload-alt"></i> Backup & Restore
+                    </a>
+                    <div class="menu-divider"></div>
+                    <a href="#" class="user-menu-item" id="sync-now">
+                        <i class="fas fa-sync-alt"></i> Sync Now
+                    </a>
+                    <div class="menu-divider"></div>
+                    <a href="#" class="user-menu-item logout-item" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Top navigation for desktop, hidden on mobile -->
+            <nav class="desktop-nav">
                 <ul>
-                    <li class="active" data-view="dashboard">Dashboard</li>
-                    <li data-view="add-wine">Add Wine</li>
-                    <li data-view="my-collection">My Collection</li>
+                    <li class="active" data-view="dashboard"><i class="fas fa-chart-line"></i> Dashboard</li>
+                    <li data-view="add-wine"><i class="fas fa-plus-circle"></i> Add Wine</li>
+                    <li data-view="my-collection"><i class="fas fa-wine-bottle"></i> My Collection</li>
                 </ul>
             </nav>
         </header>
@@ -32,55 +152,90 @@
         <main>
             <!-- Dashboard View -->
             <section id="dashboard" class="view active">
-                <h2>Your Wine Dashboard</h2>
+                <div class="dashboard-welcome">
+                    <h2>Welcome to WineRater</h2>
+                    <p>Track your wine experiences and build your personal collection.</p>
+                </div>
+                
                 <div class="dashboard-stats">
                     <div class="stat-card">
+                        <i class="fas fa-wine-bottle"></i>
                         <h3>Total Wines</h3>
                         <p id="total-wines">0</p>
                     </div>
                     <div class="stat-card">
+                        <i class="fas fa-star"></i>
                         <h3>Average Rating</h3>
                         <p id="avg-rating">0.0</p>
                     </div>
                     <div class="stat-card">
+                        <i class="fas fa-leaf"></i>
                         <h3>Top Variety</h3>
                         <p id="top-variety">None</p>
                     </div>
+                    <div class="stat-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Top Region</h3>
+                        <p id="top-region">None</p>
+                    </div>
+                </div>
+                
+                <div class="sync-info">
+                    <p>Last synced: <span id="last-sync-time">Never</span></p>
                 </div>
                 
                 <div class="top-wines">
-                    <h3>Your Top Rated Wines</h3>
+                    <div class="section-header">
+                        <h2>Your Top Rated Wines</h2>
+                    </div>
                     <div id="top-wines-list" class="wine-grid">
                         <!-- Top wines will be dynamically added here -->
+                        <div class="empty-collection" id="empty-top-wines">
+                            <i class="fas fa-star"></i>
+                            <h3>No rated wines yet</h3>
+                            <p>Add wines to see your top-rated selections here.</p>
+                            <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="recent-wines">
-                    <h3>Recently Added</h3>
+                    <div class="section-header">
+                        <h2>Recently Added</h2>
+                    </div>
                     <div id="recent-wines-list" class="wine-grid">
                         <!-- Recent wines will be dynamically added here -->
+                        <div class="empty-collection" id="empty-recent-wines">
+                            <i class="fas fa-clock"></i>
+                            <h3>No wines in collection</h3>
+                            <p>Your recent additions will appear here.</p>
+                            <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Add Wine View -->
             <section id="add-wine" class="view">
-                <h2>Add New Wine</h2>
+                <div class="section-header">
+                    <h2>Add New Wine</h2>
+                </div>
+                
                 <form id="wine-form">
                     <div class="form-group">
                         <label for="wine-name">Wine Name</label>
-                        <input type="text" id="wine-name" required>
+                        <input type="text" id="wine-name" placeholder="Enter the wine name" required>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="wine-winery">Winery</label>
-                            <input type="text" id="wine-winery" required>
+                            <input type="text" id="wine-winery" placeholder="Enter winery name" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="wine-vintage">Vintage</label>
-                            <input type="number" id="wine-vintage" min="1900" max="2099" required>
+                            <input type="number" id="wine-vintage" min="1900" max="2099" placeholder="Year (e.g. 2018)" required>
                         </div>
                     </div>
                     
@@ -88,7 +243,7 @@
                         <div class="form-group">
                             <label for="wine-type">Type</label>
                             <select id="wine-type" required>
-                                <option value="">Select Type</option>
+                                <option value="">Select Wine Type</option>
                                 <option value="Red">Red</option>
                                 <option value="White">White</option>
                                 <option value="Rosé">Rosé</option>
@@ -100,29 +255,29 @@
                         
                         <div class="form-group">
                             <label for="wine-varietal">Varietal</label>
-                            <input type="text" id="wine-varietal" required>
+                            <input type="text" id="wine-varietal" placeholder="e.g. Cabernet Sauvignon" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="wine-region">Region</label>
-                            <input type="text" id="wine-region" required>
+                            <input type="text" id="wine-region" placeholder="e.g. Napa Valley" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="wine-country">Country</label>
-                            <input type="text" id="wine-country" required>
+                            <input type="text" id="wine-country" placeholder="e.g. United States" required>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="wine-price">Price</label>
-                        <input type="number" id="wine-price" min="0" step="0.01" required>
+                        <input type="number" id="wine-price" min="0" step="0.01" placeholder="Enter price in USD" required>
                     </div>
                     
                     <div class="rating-section">
-                        <h3>Rating</h3>
+                        <h3>Rate Your Wine Experience</h3>
                         
                         <div class="rating-group">
                             <label>Aroma</label>
@@ -187,12 +342,13 @@
                     
                     <div class="form-group">
                         <label for="wine-notes">Tasting Notes</label>
-                        <textarea id="wine-notes" rows="4"></textarea>
+                        <textarea id="wine-notes" rows="3" placeholder="Describe your experience with this wine..."></textarea>
                     </div>
                     
                     <div class="form-group image-upload">
                         <label for="wine-image">Wine Label Image</label>
-                        <input type="file" id="wine-image" accept="image/*">
+                        <input type="file" id="wine-image" accept="image/*" capture="environment">
+                        <small>Take a photo or choose from your gallery</small>
                         <div id="image-preview" class="hidden"></div>
                     </div>
                     
@@ -205,8 +361,10 @@
 
             <!-- My Collection View -->
             <section id="my-collection" class="view">
-                <h2>My Wine Collection</h2>
-
+                <div class="section-header">
+                    <h2>My Wine Collection</h2>
+                </div>
+                
                 <div class="collection-filters">
                     <div class="search">
                         <input type="text" id="collection-search" placeholder="Search wines...">
@@ -224,8 +382,8 @@
                         </select>
 
                         <select id="sort-by">
-                            <option value="date">Date Added</option>
-                            <option value="rating">Rating (High to Low)</option>
+                            <option value="date">Newest First</option>
+                            <option value="rating">Highest Rated</option>
                             <option value="name">Name (A-Z)</option>
                             <option value="vintage">Vintage (New to Old)</option>
                             <option value="price">Price (Low to High)</option>
@@ -244,40 +402,233 @@
 
                 <div id="collection-list" class="wine-grid">
                     <!-- Wines will be dynamically added here -->
+                    <div class="empty-collection" id="empty-collection">
+                        <i class="fas fa-wine-glass-alt"></i>
+                        <h3>Your collection is empty</h3>
+                        <p>Start tracking wines you've tried.</p>
+                        <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Account Settings View -->
+            <section id="account-settings-view" class="view">
+                <div class="section-header">
+                    <h2>Account Settings</h2>
+                </div>
+                
+                <div class="settings-card">
+                    <h3>Profile Information</h3>
+                    <form id="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profile-name">Full Name</label>
+                                <input type="text" id="profile-name" name="displayName">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Email</label>
+                                <input type="email" id="profile-email" name="email" disabled>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="settings-card">
+                    <h3>Change Password</h3>
+                    <form id="password-form">
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" name="currentPassword" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" name="newPassword" required minlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" name="confirmPassword" required minlength="6">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">Change Password</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="settings-card">
+                    <h3>Data Management</h3>
+                    <div class="data-management-options">
+                        <button id="export-data" class="btn secondary">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                        <button id="import-data" class="btn secondary">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                        <button id="delete-account" class="btn danger">
+                            <i class="fas fa-trash-alt"></i> Delete Account
+                        </button>
+                    </div>
                 </div>
             </section>
 
             <!-- Wine Details Modal -->
             <div id="wine-details-modal" class="modal">
                 <div class="modal-content">
-                    <span class="close-modal">&times;</span>
+                    <span class="close-modal"><i class="fas fa-times"></i></span>
                     <div id="wine-details-content">
                         <!-- Wine details will be dynamically added here -->
                     </div>
                 </div>
             </div>
+            
+            <!-- Mobile Bottom Navigation -->
+            <nav class="mobile-nav">
+                <ul>
+                    <li class="active" data-view="dashboard">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li data-view="add-wine">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Wine</span>
+                    </li>
+                    <li data-view="my-collection">
+                        <i class="fas fa-wine-bottle"></i>
+                        <span>Collection</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Floating Action Button (quick add on mobile) -->
+            <div class="fab" id="quick-add-fab">
+                <i class="fas fa-plus"></i>
+            </div>
+            
+            <!-- Toast Notifications -->
+            <div class="toast-container" id="toast-container">
+                <!-- Toasts will be dynamically added here -->
+            </div>
+            
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="loading-spinner"></div>
+                <p id="loading-message">Loading...</p>
+            </div>
+            
+            <!-- Sync Status Indicator -->
+            <div id="sync-status" class="sync-status">
+                <i class="fas fa-sync-alt"></i>
+                <span id="sync-status-text">Syncing...</span>
+            </div>
         </main>
 
         <footer>
-            <p>&copy; 2025 WineRater. All rights reserved.</p>
+            <p>&copy; 2025 WineRater | Your personal wine journey</p>
         </footer>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-storage-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="auth.js"></script>
+    <script src="cloud-storage.js"></script>
     <script src="export.js"></script>
+    <script src="app-cloud.js"></script>
     <script>
-        // Register Service Worker for PWA functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
+        // Initialize Firebase with your config
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6mej5_RsZ6zHGQc2Tyt1OaL3pK4W_hbo",
+            authDomain: "winerater-ce2e1.firebaseapp.com",
+            projectId: "winerater-ce2e1",
+            storageBucket: "winerater-ce2e1.firebasestorage.app",
+            messagingSenderId: "892762387146",
+            appId: "1:892762387146:web:0b85672c1c303f4e4eba33"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Initialize app modules
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize authentication
+            Auth.init();
+            
+            // Setup auth tabs
+            const authTabs = document.querySelectorAll('.auth-tab');
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+                });
             });
-        }
+            
+            // Setup user menu
+            const userMenuTrigger = document.getElementById('user-menu-trigger');
+            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+            
+            if (userMenuTrigger && userMenuDropdown) {
+                userMenuTrigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userMenuDropdown.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (userMenuDropdown.classList.contains('open') && !userMenuDropdown.contains(e.target)) {
+                        userMenuDropdown.classList.remove('open');
+                    }
+                });
+                
+                // Setup Sync Now button
+                document.getElementById('sync-now').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    userMenuDropdown.classList.remove('open');
+                    
+                    if (CloudStorage.isOnline()) {
+                        CloudStorage.syncToCloud()
+                            .then(() => {
+                                WineRater.showToast('Sync completed successfully!', 'success');
+                                document.getElementById('last-sync-time').textContent = new Date().toLocaleString();
+                            })
+                            .catch(error => {
+                                WineRater.showToast('Sync failed: ' + error.message, 'error');
+                            });
+                    } else {
+                        WineRater.showToast('You are offline. Please connect to the internet and try again.', 'error');
+                    }
+                });
+                
+                // Setup Account Settings button
+                document.getElementById('account-settings').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    userMenuDropdown.classList.remove('open');
+                    WineRater.switchView('account-settings-view');
+                });
+            }
+            
+            // Register Service Worker for PWA functionality
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('ServiceWorker registration failed: ', error);
+                        });
+                });
+            }
+        });
     </script>
 </body>
 </html>
