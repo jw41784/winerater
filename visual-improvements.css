@@ -1,0 +1,823 @@
+/* Visual Improvements for WineRater
+   - Enhanced spacing and alignment
+   - Improved readability
+   - Professional visual styling
+   - Consistent sizing
+   - Better mobile experience
+*/
+
+/* Global Refinements */
+:root {
+    /* Enhanced consistent spacing units */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Refined border radius values */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Refined color palette */
+    --wine-red: #8B0000;
+    --wine-red-light: #A52A2A;
+    --wine-red-dark: #660000;
+    --wine-gold: #D4AF37;
+    --wine-cream: #F8F4E3;
+    --wine-gray: #F9F9F9;
+    --wine-text: #333333;
+    --wine-text-light: #666666;
+    
+    /* Typography */
+    --font-scale-factor: 1;
+}
+
+/* Typography Improvements */
+body {
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+/* Better tap targets for all interactive elements */
+button, 
+.btn, 
+input[type="submit"],
+.wine-card,
+.social-btn,
+nav li,
+select,
+.user-menu-trigger,
+.fab {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Authentication Page Improvements */
+.auth-container {
+    padding: var(--spacing-md);
+}
+
+.auth-content {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.auth-tabs {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: var(--spacing-md) var(--spacing-sm);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.auth-tab.active {
+    color: var(--wine-red);
+    border-bottom: 2px solid var(--wine-red);
+}
+
+.auth-form .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.auth-form label {
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+    display: block;
+}
+
+.social-login {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.social-btn.google {
+    background-color: #4285F4;
+    color: white;
+}
+
+/* Dashboard Improvements */
+.dashboard-welcome {
+    background-color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+}
+
+.dashboard-welcome h2 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--wine-red);
+}
+
+.dashboard-stats {
+    margin-bottom: var(--spacing-xl);
+    grid-gap: var(--spacing-md);
+}
+
+.stat-card {
+    padding: var(--spacing-lg);
+    background: linear-gradient(160deg, white 0%, #fafafa 100%);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+}
+
+.stat-card.shown {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.stat-card i {
+    font-size: 1.8rem;
+    color: var(--wine-red);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--wine-red);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+}
+
+.wine-grid {
+    grid-gap: var(--spacing-lg);
+}
+
+/* Wine Card Refinements */
+.wine-card {
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.wine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.wine-card-image {
+    height: 180px;
+}
+
+.wine-card-content {
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.wine-card-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--wine-text);
+}
+
+.wine-card-winery {
+    color: var(--wine-text-light);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.wine-card-region {
+    color: var(--wine-text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+.wine-card-rating {
+    font-weight: 500;
+}
+
+.wine-type {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Add Wine Form Improvements */
+#wine-form {
+    background-color: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.form-row {
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+    color: var(--wine-text);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--wine-text);
+    background-color: #FFFFFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--wine-red-light);
+    box-shadow: 0 0 0 3px rgba(165, 42, 42, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Form feedback */
+.form-group.focused label {
+    color: var(--wine-red);
+    transform: translateY(-5px) scale(0.95);
+    transform-origin: 0 0;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.form-group.has-value label {
+    font-weight: 600;
+}
+
+/* Star rating hover effect */
+.star-rating i.hover {
+    transform: scale(1.2);
+    color: var(--wine-gold);
+}
+
+.rating-section {
+    background-color: #fafafa;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.rating-section h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--wine-text);
+}
+
+.rating-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.star-rating {
+    display: inline-flex;
+}
+
+.star-rating i {
+    color: var(--wine-gold);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.image-upload {
+    background-color: #fafafa;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+}
+
+.image-upload small {
+    display: block;
+    margin-top: var(--spacing-xs);
+    color: var(--wine-text-light);
+}
+
+#image-preview {
+    margin-top: var(--spacing-md);
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+/* Collection View Improvements */
+.collection-filters {
+    background-color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: var(--spacing-lg);
+}
+
+.search {
+    margin-bottom: var(--spacing-sm);
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.export-options {
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+/* Wine Details Modal Refinements */
+.modal-content {
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    overflow: auto;
+}
+
+.wine-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+}
+
+.wine-image-large {
+    background-color: #f5f5f5;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wine-info h2 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--wine-red);
+}
+
+.wine-meta {
+    margin-bottom: var(--spacing-md);
+    color: var(--wine-text-light);
+}
+
+.wine-overall-rating {
+    background-color: #fafafa;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.wine-ratings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.wine-rating-item {
+    text-align: center;
+    padding: var(--spacing-sm);
+    background-color: #fafafa;
+    border-radius: var(--radius-md);
+}
+
+.wine-tasting-notes {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.wine-actions {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 300px;
+    max-width: 450px;
+    margin-bottom: var(--spacing-md);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.hiding {
+    transform: translateX(120%);
+}
+
+.toast i {
+    margin-right: var(--spacing-sm);
+    font-size: 1.2rem;
+}
+
+.toast-message {
+    flex: 1;
+    font-weight: 500;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+.toast.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.toast.success i {
+    color: var(--success-color);
+}
+
+.toast.error {
+    border-left: 4px solid var(--error-color);
+}
+
+.toast.error i {
+    color: var(--error-color);
+}
+
+.toast.info {
+    border-left: 4px solid #2196F3;
+}
+
+.toast.info i {
+    color: #2196F3;
+}
+
+.toast.warning {
+    border-left: 4px solid #FF9800;
+}
+
+.toast.warning i {
+    color: #FF9800;
+}
+
+/* Empty State Styling */
+.empty-collection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-xl);
+    background-color: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    grid-column: 1 / -1;
+}
+
+.empty-collection i {
+    font-size: 3rem;
+    color: var(--wine-red);
+    opacity: 0.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.empty-collection h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--wine-text);
+}
+
+.empty-collection p {
+    margin-bottom: var(--spacing-lg);
+    color: var(--wine-text-light);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    :root {
+        --font-scale-factor: 0.95;
+    }
+    
+    h1 {
+        font-size: calc(1.8rem * var(--font-scale-factor));
+    }
+    
+    h2 {
+        font-size: calc(1.5rem * var(--font-scale-factor));
+    }
+    
+    h3 {
+        font-size: calc(1.2rem * var(--font-scale-factor));
+    }
+    
+    p {
+        font-size: calc(1rem * var(--font-scale-factor));
+    }
+    
+    .auth-content {
+        padding: var(--spacing-lg);
+    }
+    
+    #wine-form {
+        padding: var(--spacing-lg);
+    }
+    
+    .wine-details {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .wine-image-large {
+        height: 250px;
+    }
+    
+    .toast {
+        min-width: auto;
+        max-width: 90%;
+    }
+}
+
+/* Small Mobile Optimizations */
+@media (max-width: 480px) {
+    :root {
+        --font-scale-factor: 0.9;
+    }
+    
+    .auth-content {
+        padding: var(--spacing-md);
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+    
+    .export-options {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .export-options .btn {
+        width: 100%;
+    }
+    
+    .wine-ratings {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Enhanced Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+    display: none;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.3s ease;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--wine-red);
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading-message {
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* Sync Status Indicator */
+.sync-status {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: var(--wine-red);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.sync-status.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sync-status i {
+    margin-right: var(--spacing-sm);
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Subtle page transitions */
+.view {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.view.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Bottom Navigation Enhancement */
+.mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+}
+
+.mobile-nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    color: var(--wine-text-light);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav li.active {
+    color: var(--wine-red);
+}
+
+.mobile-nav i {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+}
+
+/* Enhanced Floating Action Button */
+.fab {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--wine-red);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 99;
+    display: none;
+}
+
+.fab i {
+    font-size: 1.5rem;
+}
+
+.fab:hover, .fab:active {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.4);
+}
+
+/* Show mobile elements on small screens */
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: block;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .fab {
+        display: flex;
+    }
+
+    /* Add bottom padding to account for fixed nav */
+    main {
+        padding-bottom: 70px;
+    }
+}
