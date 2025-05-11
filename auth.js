@@ -14,23 +14,11 @@ const Auth = {
     init: function() {
         console.log('Initializing Auth module');
         this.auth = firebase.auth();
-
-        // Check for redirect result immediately
-        this.auth.getRedirectResult()
-            .then(result => {
-                if (result && result.user) {
-                    console.log('Redirect sign-in successful:', result.user.email);
-                }
-            })
-            .catch(error => {
-                console.error('Error with redirect sign-in:', error);
-                // Don't show toast here as the app UI might not be ready yet
-            });
-
+        
         // Set up auth state listener
         this.auth.onAuthStateChanged(user => {
             this.currentUser = user;
-
+            
             if (user) {
                 // User is signed in
                 console.log("User signed in:", user.email);
@@ -41,10 +29,10 @@ const Auth = {
                 this.onSignOut();
             }
         });
-
+        
         // Set up UI event listeners
         this.setupEventListeners();
-
+        
         console.log('Auth module initialized');
     },
     
@@ -62,7 +50,7 @@ const Auth = {
                 );
             });
         }
-
+        
         // Login form submission
         const loginForm = document.getElementById('login-form');
         if (loginForm) {
@@ -74,7 +62,7 @@ const Auth = {
                 );
             });
         }
-
+        
         // Google Sign-in button
         const googleSignInBtn = document.getElementById('google-signin');
         console.log('Google Sign-in button found:', !!googleSignInBtn);
@@ -82,18 +70,10 @@ const Auth = {
             googleSignInBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 console.log('Google sign-in button clicked');
-                // Show loading indicator for feedback
-                this.showLoading('Connecting to Google...');
-                try {
-                    this.loginWithGoogle();
-                } catch(error) {
-                    console.error('Error starting Google login:', error);
-                    this.hideLoading();
-                    WineRater.showToast('Failed to start Google login: ' + error.message, 'error');
-                }
+                this.loginWithGoogle();
             });
         }
-
+        
         // Logout button
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) {
@@ -177,42 +157,24 @@ const Auth = {
     // Login with Google
     loginWithGoogle: function() {
         console.log('Starting Google login process');
-
-        // Add scopes if needed
+        this.showLoading('Connecting to Google...');
+        
+        // Create a simple Google provider
         const provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('profile');
-        provider.addScope('email');
-
-        console.log('Using signInWithRedirect for better mobile compatibility');
-        // Use signInWithRedirect for better mobile compatibility instead of signInWithPopup
-        this.auth.signInWithRedirect(provider)
-            .catch(error => {
-                this.hideLoading();
-                // Show detailed error message
-                console.error("Google login redirect error:", error);
-                WineRater.showToast('Error starting Google login: ' + error.message, 'error');
-            });
-
-        // Set up redirect result handler
-        this.auth.getRedirectResult()
+        
+        // Use popup for immediate feedback rather than redirect
+        this.auth.signInWithPopup(provider)
             .then(result => {
-                this.hideLoading();
-                console.log('Redirect result received', result);
-
-                // If no result, user hasn't completed login yet
-                if (!result || !result.user) {
-                    return;
-                }
-
-                // Check if this is a new user
+                console.log('Google sign-in successful');
+                const user = result.user;
                 const isNewUser = result.additionalUserInfo?.isNewUser;
-                console.log('Is new user:', isNewUser);
-
-                if (isNewUser) {
+                
+                if (isNewUser && user) {
+                    console.log('Creating new user document in Firestore');
                     // Create user document in Firestore
-                    return firebase.firestore().collection('users').doc(result.user.uid).set({
-                        displayName: result.user.displayName,
-                        email: result.user.email,
+                    return firebase.firestore().collection('users').doc(user.uid).set({
+                        displayName: user.displayName,
+                        email: user.email,
                         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                         preferences: {
                             defaultView: 'dashboard'
@@ -221,21 +183,27 @@ const Auth = {
                 }
             })
             .then(() => {
-                // Check if we have a current user before proceeding
-                if (this.auth.currentUser) {
-                    // Show success message
-                    WineRater.showToast('Successfully logged in with Google!', 'success');
-
-                    // Close auth modal and show the app
-                    this.closeAuthModal();
-                    this.showApp();
-                }
+                this.hideLoading();
+                
+                // Show success message
+                WineRater.showToast('Successfully logged in with Google!', 'success');
+                
+                // Close auth modal and show the app
+                this.closeAuthModal();
+                this.showApp();
             })
             .catch(error => {
                 this.hideLoading();
-                // Show detailed error message
-                console.error("Google login result error:", error);
-                WineRater.showToast('Error logging in with Google: ' + error.message, 'error');
+                console.error("Google login error:", error);
+                
+                // Show user-friendly error message
+                if (error.code === 'auth/popup-blocked') {
+                    WineRater.showToast('Google login popup was blocked. Please allow popups for this site.', 'error');
+                } else if (error.code === 'auth/popup-closed-by-user') {
+                    WineRater.showToast('Google login was cancelled. Please try again.', 'info');
+                } else {
+                    WineRater.showToast('Error logging in with Google: ' + error.message, 'error');
+                }
             });
     },
     
