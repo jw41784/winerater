@@ -47,7 +47,7 @@ const Auth = {
                 );
             });
         }
-        
+
         // Login form submission
         const loginForm = document.getElementById('login-form');
         if (loginForm) {
@@ -59,7 +59,16 @@ const Auth = {
                 );
             });
         }
-        
+
+        // Google Sign-in button
+        const googleSignInBtn = document.getElementById('google-signin');
+        if (googleSignInBtn) {
+            googleSignInBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.loginWithGoogle();
+            });
+        }
+
         // Logout button
         const logoutBtn = document.getElementById('logout-btn');
         if (logoutBtn) {
