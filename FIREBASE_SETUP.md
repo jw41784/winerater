@@ -25,15 +25,23 @@ This document provides step-by-step instructions for setting up Firebase authent
 4. Click "Register app"
 5. Copy the Firebase configuration object that appears:
 
-```javascript
+```// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyD6mej5_RsZ6zHGQc2Tyt1OaL3pK4W_hbo",
+  authDomain: "winerater-ce2e1.firebaseapp.com",
+  projectId: "winerater-ce2e1",
+  storageBucket: "winerater-ce2e1.firebasestorage.app",
+  messagingSenderId: "892762387146",
+  appId: "1:892762387146:web:0b85672c1c303f4e4eba33"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 ```
 
 6. Click "Continue to console"

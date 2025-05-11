@@ -369,7 +369,7 @@
                     <div class="search">
                         <input type="text" id="collection-search" placeholder="Search wines...">
                     </div>
-                    
+
                     <div class="filters">
                         <select id="type-filter">
                             <option value="all">All Types</option>
@@ -380,7 +380,7 @@
                             <option value="Dessert">Dessert</option>
                             <option value="Fortified">Fortified</option>
                         </select>
-                        
+
                         <select id="sort-by">
                             <option value="date">Newest First</option>
                             <option value="rating">Highest Rated</option>
@@ -390,7 +390,16 @@
                         </select>
                     </div>
                 </div>
-                
+
+                <div class="export-options">
+                    <button id="export-csv-btn" class="btn secondary">
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                    <button id="export-pdf-btn" class="btn secondary">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </button>
+                </div>
+
                 <div id="collection-list" class="wine-grid">
                     <!-- Wines will be dynamically added here -->
                     <div class="empty-collection" id="empty-collection">
@@ -531,16 +540,17 @@
     <!-- App Scripts -->
     <script src="auth.js"></script>
     <script src="cloud-storage.js"></script>
+    <script src="export.js"></script>
     <script src="app-cloud.js"></script>
     <script>
         // Initialize Firebase with your config
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "winerater-app.firebaseapp.com",
-            projectId: "winerater-app",
-            storageBucket: "winerater-app.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyD6mej5_RsZ6zHGQc2Tyt1OaL3pK4W_hbo",
+            authDomain: "winerater-ce2e1.firebaseapp.com",
+            projectId: "winerater-ce2e1",
+            storageBucket: "winerater-ce2e1.firebasestorage.app",
+            messagingSenderId: "892762387146",
+            appId: "1:892762387146:web:0b85672c1c303f4e4eba33"
         };
         
         // Initialize Firebase

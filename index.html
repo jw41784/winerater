@@ -206,12 +206,12 @@
             <!-- My Collection View -->
             <section id="my-collection" class="view">
                 <h2>My Wine Collection</h2>
-                
+
                 <div class="collection-filters">
                     <div class="search">
                         <input type="text" id="collection-search" placeholder="Search wines...">
                     </div>
-                    
+
                     <div class="filters">
                         <select id="type-filter">
                             <option value="all">All Types</option>
@@ -222,7 +222,7 @@
                             <option value="Dessert">Dessert</option>
                             <option value="Fortified">Fortified</option>
                         </select>
-                        
+
                         <select id="sort-by">
                             <option value="date">Date Added</option>
                             <option value="rating">Rating (High to Low)</option>
@@ -232,7 +232,16 @@
                         </select>
                     </div>
                 </div>
-                
+
+                <div class="export-options">
+                    <button id="export-csv-btn" class="btn secondary">
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                    <button id="export-pdf-btn" class="btn secondary">
+                        <i class="fas fa-file-pdf"></i> Export PDF
+                    </button>
+                </div>
+
                 <div id="collection-list" class="wine-grid">
                     <!-- Wines will be dynamically added here -->
                 </div>
@@ -255,6 +264,7 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="export.js"></script>
     <script>
         // Register Service Worker for PWA functionality
         if ('serviceWorker' in navigator) {
