@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WineRater | Your Personal Wine Journal</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Track and rate your wine experiences with WineRater, your personal digital wine journal">
+    <meta name="keywords" content="wine, wine journal, wine ratings, wine collection, wine tracking">
+    <meta name="author" content="WineRater">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="WineRater | Your Personal Wine Journal">
+    <meta property="og:description" content="Your personal digital wine journal - track, rate, and discover wines">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="icons/icon-512.png">
+    
+    <!-- Mobile App Meta -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#8B0000">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Unified CSS -->
+    <link rel="stylesheet" href="styles-unified.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="wine-bubble"></div>
+        <div class="wine-bubble"></div>
+        <div class="wine-bubble"></div>
+        <div class="wine-bubble"></div>
+        <div class="wine-bubble"></div>
+    </div>
+
+    <!-- Authentication Container -->
+    <div id="auth-container" class="auth-container">
+        <div class="auth-card card">
+            <div class="auth-header text-center">
+                <div class="logo-wrapper mb-4">
+                    <i class="fas fa-wine-glass-alt logo-icon text-primary"></i>
+                </div>
+                <h1 class="logo-text">WineRater</h1>
+                <p class="text-muted">Your personal wine journey starts here</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Create Account</button>
+            </div>
+
+            <div class="auth-content">
+                <!-- Login Tab -->
+                <div class="tab-pane active" id="login-tab">
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label class="form-label" for="login-email">Email</label>
+                            <input type="email" id="login-email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="login-password">Password</label>
+                            <input type="password" id="login-password" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="remember-me">
+                                <span>Remember me</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                        
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-primary" id="forgot-password">Forgot password?</a>
+                        </div>
+                    </form>
+
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <div class="social-auth">
+                        <button type="button" class="btn btn-social btn-google" id="google-signin">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Register Tab -->
+                <div class="tab-pane" id="register-tab">
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label class="form-label" for="register-name">Full Name</label>
+                            <input type="text" id="register-name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-email">Email</label>
+                            <input type="email" id="register-email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-password">Password</label>
+                            <input type="password" id="register-password" class="form-input" required minlength="6">
+                            <small class="form-hint">Minimum 6 characters</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="agree-terms" required>
+                                <span>I agree to the <a href="#" class="text-primary">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app-container" class="app-container" style="display: none;">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo-wrapper">
+                        <i class="fas fa-wine-glass-alt logo-icon"></i>
+                        <h1 class="logo-text">WineRater</h1>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <nav class="nav-desktop">
+                        <a href="#" class="nav-link active" data-view="dashboard">
+                            <i class="fas fa-chart-line"></i> Dashboard
+                        </a>
+                        <a href="#" class="nav-link" data-view="add-wine">
+                            <i class="fas fa-plus-circle"></i> Add Wine
+                        </a>
+                        <a href="#" class="nav-link" data-view="my-collection">
+                            <i class="fas fa-wine-bottle"></i> Collection
+                        </a>
+                    </nav>
+
+                    <!-- User Menu -->
+                    <div class="user-menu">
+                        <div class="user-menu-trigger" id="user-menu-trigger">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="user-name">User</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="user-menu-dropdown" id="user-menu-dropdown">
+                            <div class="user-info">
+                                <div class="user-name-full">John Doe</div>
+                                <div class="user-email">john@example.com</div>
+                            </div>
+                            <div class="menu-divider"></div>
+                            <a href="#" class="menu-item" data-action="settings">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <a href="#" class="menu-item" data-action="sync">
+                                <i class="fas fa-sync-alt"></i> Sync Now
+                            </a>
+                            <a href="#" class="menu-item" data-action="export">
+                                <i class="fas fa-download"></i> Export Data
+                            </a>
+                            <div class="menu-divider"></div>
+                            <a href="#" class="menu-item text-error" data-action="logout">
+                                <i class="fas fa-sign-out-alt"></i> Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="container">
+                <!-- Dashboard View -->
+                <section id="dashboard" class="view active">
+                    <div class="view-header">
+                        <h2 class="view-title">Dashboard</h2>
+                        <p class="view-subtitle">Welcome back! Here's your wine collection overview.</p>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-wine-bottle stat-icon"></i>
+                            <div class="stat-value" id="total-wines">0</div>
+                            <div class="stat-label">Total Wines</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-star stat-icon"></i>
+                            <div class="stat-value" id="avg-rating">0.0</div>
+                            <div class="stat-label">Average Rating</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-leaf stat-icon"></i>
+                            <div class="stat-value" id="top-varietal">None</div>
+                            <div class="stat-label">Top Varietal</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-map-marker-alt stat-icon"></i>
+                            <div class="stat-value" id="top-region">None</div>
+                            <div class="stat-label">Top Region</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Wines -->
+                    <div class="section mt-8">
+                        <div class="section-header">
+                            <h3 class="section-title">Recent Additions</h3>
+                            <a href="#" class="btn btn-ghost btn-sm" data-view="my-collection">
+                                View All <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div id="recent-wines" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Wine cards will be inserted here -->
+                        </div>
+                        
+                        <div id="empty-recent" class="empty-state" style="display: none;">
+                            <i class="fas fa-wine-glass empty-state-icon"></i>
+                            <h3 class="empty-state-title">No wines yet</h3>
+                            <p class="empty-state-text">Start by adding your first wine to the collection.</p>
+                            <button class="btn btn-primary" data-view="add-wine">
+                                <i class="fas fa-plus"></i> Add Wine
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Top Rated Wines -->
+                    <div class="section mt-8">
+                        <div class="section-header">
+                            <h3 class="section-title">Top Rated</h3>
+                        </div>
+                        
+                        <div id="top-wines" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                            <!-- Wine cards will be inserted here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Add Wine View -->
+                <section id="add-wine" class="view">
+                    <div class="view-header">
+                        <h2 class="view-title">Add New Wine</h2>
+                        <p class="view-subtitle">Record your wine experience</p>
+                    </div>
+
+                    <form id="wine-form" class="wine-form">
+                        <!-- Basic Information -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Wine Information</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="wine-name">Wine Name *</label>
+                                <input type="text" id="wine-name" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-winery">Winery *</label>
+                                    <input type="text" id="wine-winery" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-vintage">Vintage *</label>
+                                    <input type="number" id="wine-vintage" class="form-input" 
+                                           min="1900" max="2099" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-type">Type *</label>
+                                    <select id="wine-type" class="form-select" required>
+                                        <option value="">Select Type</option>
+                                        <option value="Red">Red</option>
+                                        <option value="White">White</option>
+                                        <option value="Rosé">Rosé</option>
+                                        <option value="Sparkling">Sparkling</option>
+                                        <option value="Dessert">Dessert</option>
+                                        <option value="Fortified">Fortified</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-varietal">Varietal *</label>
+                                    <input type="text" id="wine-varietal" class="form-input" 
+                                           placeholder="e.g., Cabernet Sauvignon" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-region">Region *</label>
+                                    <input type="text" id="wine-region" class="form-input" 
+                                           placeholder="e.g., Napa Valley" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="wine-country">Country *</label>
+                                    <input type="text" id="wine-country" class="form-input" 
+                                           placeholder="e.g., United States" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="wine-price">Price *</label>
+                                <div class="input-group">
+                                    <span class="input-addon">$</span>
+                                    <input type="number" id="wine-price" class="form-input" 
+                                           min="0" step="0.01" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rating Section -->
+                        <div class="form-section rating-section">
+                            <h3 class="form-section-title">Rate Your Experience</h3>
+                            
+                            <div class="rating-grid">
+                                <div class="rating-item">
+                                    <label class="rating-label">Aroma</label>
+                                    <div class="star-rating" data-rating="aroma">
+                                        <i class="far fa-star star" data-value="1"></i>
+                                        <i class="far fa-star star" data-value="2"></i>
+                                        <i class="far fa-star star" data-value="3"></i>
+                                        <i class="far fa-star star" data-value="4"></i>
+                                        <i class="far fa-star star" data-value="5"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="rating-item">
+                                    <label class="rating-label">Taste</label>
+                                    <div class="star-rating" data-rating="taste">
+                                        <i class="far fa-star star" data-value="1"></i>
+                                        <i class="far fa-star star" data-value="2"></i>
+                                        <i class="far fa-star star" data-value="3"></i>
+                                        <i class="far fa-star star" data-value="4"></i>
+                                        <i class="far fa-star star" data-value="5"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="rating-item">
+                                    <label class="rating-label">Body</label>
+                                    <div class="star-rating" data-rating="body">
+                                        <i class="far fa-star star" data-value="1"></i>
+                                        <i class="far fa-star star" data-value="2"></i>
+                                        <i class="far fa-star star" data-value="3"></i>
+                                        <i class="far fa-star star" data-value="4"></i>
+                                        <i class="far fa-star star" data-value="5"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="rating-item">
+                                    <label class="rating-label">Finish</label>
+                                    <div class="star-rating" data-rating="finish">
+                                        <i class="far fa-star star" data-value="1"></i>
+                                        <i class="far fa-star star" data-value="2"></i>
+                                        <i class="far fa-star star" data-value="3"></i>
+                                        <i class="far fa-star star" data-value="4"></i>
+                                        <i class="far fa-star star" data-value="5"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="rating-item">
+                                    <label class="rating-label">Value</label>
+                                    <div class="star-rating" data-rating="value">
+                                        <i class="far fa-star star" data-value="1"></i>
+                                        <i class="far fa-star star" data-value="2"></i>
+                                        <i class="far fa-star star" data-value="3"></i>
+                                        <i class="far fa-star star" data-value="4"></i>
+                                        <i class="far fa-star star" data-value="5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="overall-rating-display">
+                                <div class="overall-rating-value" id="overall-rating">0.0</div>
+                                <div class="overall-rating-label">Overall Rating</div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Additional Details</h3>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="wine-notes">Tasting Notes</label>
+                                <textarea id="wine-notes" class="form-textarea" rows="4" 
+                                          placeholder="Describe your experience..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Wine Label Photo</label>
+                                <div class="image-upload-area" id="image-upload">
+                                    <input type="file" id="wine-image" accept="image/*" hidden>
+                                    <i class="fas fa-camera upload-icon"></i>
+                                    <p class="upload-text">Click to upload or drag & drop</p>
+                                    <p class="upload-hint">JPG, PNG up to 5MB</p>
+                                </div>
+                                <div id="image-preview" style="display: none;">
+                                    <img id="preview-img" class="image-preview">
+                                    <button type="button" class="btn btn-sm btn-ghost" id="remove-image">
+                                        <i class="fas fa-times"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="reset-form">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Wine
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Collection View -->
+                <section id="my-collection" class="view">
+                    <div class="view-header">
+                        <h2 class="view-title">My Collection</h2>
+                        <div class="view-actions">
+                            <button class="btn btn-secondary btn-sm" id="export-csv">
+                                <i class="fas fa-file-csv"></i> Export CSV
+                            </button>
+                            <button class="btn btn-secondary btn-sm" id="export-pdf">
+                                <i class="fas fa-file-pdf"></i> Export PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="collection-filters">
+                        <div class="filter-group">
+                            <div class="search-box">
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" id="search-wines" class="form-input" 
+                                       placeholder="Search wines...">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <select id="filter-type" class="form-select">
+                                <option value="all">All Types</option>
+                                <option value="Red">Red</option>
+                                <option value="White">White</option>
+                                <option value="Rosé">Rosé</option>
+                                <option value="Sparkling">Sparkling</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Fortified">Fortified</option>
+                            </select>
+                            
+                            <select id="sort-wines" class="form-select">
+                                <option value="date">Newest First</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="name">Name (A-Z)</option>
+                                <option value="price">Price (Low to High)</option>
+                                <option value="vintage">Vintage</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Wine Grid -->
+                    <div id="wine-collection" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Wine cards will be inserted here -->
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="empty-collection" class="empty-state" style="display: none;">
+                        <i class="fas fa-wine-bottle empty-state-icon"></i>
+                        <h3 class="empty-state-title">Your collection is empty</h3>
+                        <p class="empty-state-text">Start building your wine collection by adding your first wine.</p>
+                        <button class="btn btn-primary" data-view="add-wine">
+                            <i class="fas fa-plus"></i> Add Your First Wine
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile">
+            <ul class="nav-mobile-list">
+                <li class="nav-mobile-item">
+                    <a href="#" class="nav-mobile-link active" data-view="dashboard">
+                        <i class="fas fa-chart-line nav-mobile-icon"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-mobile-item">
+                    <a href="#" class="nav-mobile-link" data-view="add-wine">
+                        <i class="fas fa-plus-circle nav-mobile-icon"></i>
+                        <span>Add</span>
+                    </a>
+                </li>
+                <li class="nav-mobile-item">
+                    <a href="#" class="nav-mobile-link" data-view="my-collection">
+                        <i class="fas fa-wine-bottle nav-mobile-icon"></i>
+                        <span>Collection</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Floating Action Button -->
+        <button class="fab" id="fab-add-wine">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loading-message">Loading...</p>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+
+    <!-- PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- App Scripts -->
+    <script src="js/app-core.js"></script>
+    <script src="js/modules/ui-manager.js"></script>
+    <script src="js/modules/data-manager.js"></script>
+    <script src="js/modules/auth-manager.js"></script>
+    <script src="js/modules/wine-controller.js"></script>
+    <script src="js/modules/export-manager.js"></script>
+    <script src="js/app-init.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD6mej5_RsZ6zHGQc2Tyt1OaL3pK4W_hbo",
+            authDomain: "winerater-ce2e1.firebaseapp.com",
+            projectId: "winerater-ce2e1",
+            storageBucket: "winerater-ce2e1.firebasestorage.app",
+            messagingSenderId: "892762387146",
+            appId: "1:892762387146:web:0b85672c1c303f4e4eba33"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</body>
+</html>
