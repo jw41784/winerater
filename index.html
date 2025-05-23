@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="auth-styles.css">
     <link rel="stylesheet" href="visual-improvements.css">
     <link rel="stylesheet" href="background-circles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-modern-components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -174,25 +175,33 @@
                 </div>
                 
                 <div class="dashboard-stats">
-                    <div class="stat-card">
-                        <i class="fas fa-wine-bottle"></i>
-                        <h3>Total Wines</h3>
-                        <p id="total-wines">0</p>
+                    <div class="modern-stat-card">
+                        <div class="modern-stat-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <div class="modern-stat-value" id="total-wines">0</div>
+                        <div class="modern-stat-label">Total Wines</div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-star"></i>
-                        <h3>Average Rating</h3>
-                        <p id="avg-rating">0.0</p>
+                    <div class="modern-stat-card">
+                        <div class="modern-stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="modern-stat-value" id="avg-rating">0.0</div>
+                        <div class="modern-stat-label">Average Rating</div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-leaf"></i>
-                        <h3>Top Variety</h3>
-                        <p id="top-variety">None</p>
+                    <div class="modern-stat-card">
+                        <div class="modern-stat-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="modern-stat-value" id="top-variety">None</div>
+                        <div class="modern-stat-label">Top Variety</div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Top Region</h3>
-                        <p id="top-region">None</p>
+                    <div class="modern-stat-card">
+                        <div class="modern-stat-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="modern-stat-value" id="top-region">None</div>
+                        <div class="modern-stat-label">Top Region</div>
                     </div>
                 </div>
                 
@@ -206,11 +215,15 @@
                     </div>
                     <div id="top-wines-list" class="wine-grid">
                         <!-- Top wines will be dynamically added here -->
-                        <div class="empty-collection" id="empty-top-wines">
-                            <i class="fas fa-star"></i>
-                            <h3>No rated wines yet</h3>
-                            <p>Add wines to see your top-rated selections here.</p>
-                            <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                        <div class="modern-empty-state" id="empty-top-wines">
+                            <div class="modern-empty-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="modern-empty-title">No rated wines yet</h3>
+                            <p class="modern-empty-text">Add wines to see your top-rated selections here.</p>
+                            <button class="modern-btn add-wine-btn">
+                                <i class="fas fa-plus"></i> Add Your First Wine
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -221,11 +234,15 @@
                     </div>
                     <div id="recent-wines-list" class="wine-grid">
                         <!-- Recent wines will be dynamically added here -->
-                        <div class="empty-collection" id="empty-recent-wines">
-                            <i class="fas fa-clock"></i>
-                            <h3>No wines in collection</h3>
-                            <p>Your recent additions will appear here.</p>
-                            <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                        <div class="modern-empty-state" id="empty-recent-wines">
+                            <div class="modern-empty-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="modern-empty-title">No wines in collection</h3>
+                            <p class="modern-empty-text">Your recent additions will appear here.</p>
+                            <button class="modern-btn add-wine-btn">
+                                <i class="fas fa-plus"></i> Add Your First Wine
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -369,8 +386,12 @@
                     </div>
                     
                     <div class="form-actions">
-                        <button type="submit" class="btn primary">Save Wine</button>
-                        <button type="reset" class="btn secondary">Reset</button>
+                        <button type="submit" class="modern-btn">
+                            <i class="fas fa-save"></i> Save Wine
+                        </button>
+                        <button type="reset" class="modern-btn modern-btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
                     </div>
                 </form>
             </section>
@@ -382,8 +403,9 @@
                 </div>
                 
                 <div class="collection-filters">
-                    <div class="search">
-                        <input type="text" id="collection-search" placeholder="Search wines...">
+                    <div class="modern-search">
+                        <i class="fas fa-search modern-search-icon"></i>
+                        <input type="text" id="collection-search" class="modern-search-input" placeholder="Search wines...">
                     </div>
 
                     <div class="filters">
@@ -408,21 +430,25 @@
                 </div>
 
                 <div class="export-options">
-                    <button id="export-csv-btn" class="btn secondary">
+                    <button id="export-csv-btn" class="modern-btn modern-btn-secondary">
                         <i class="fas fa-file-csv"></i> Export CSV
                     </button>
-                    <button id="export-pdf-btn" class="btn secondary">
+                    <button id="export-pdf-btn" class="modern-btn modern-btn-secondary">
                         <i class="fas fa-file-pdf"></i> Export PDF
                     </button>
                 </div>
 
                 <div id="collection-list" class="wine-grid">
                     <!-- Wines will be dynamically added here -->
-                    <div class="empty-collection" id="empty-collection">
-                        <i class="fas fa-wine-glass-alt"></i>
-                        <h3>Your collection is empty</h3>
-                        <p>Start tracking wines you've tried.</p>
-                        <button class="btn primary add-wine-btn">Add Your First Wine</button>
+                    <div class="modern-empty-state" id="empty-collection">
+                        <div class="modern-empty-icon">
+                            <i class="fas fa-wine-glass-alt"></i>
+                        </div>
+                        <h3 class="modern-empty-title">Your collection is empty</h3>
+                        <p class="modern-empty-text">Start tracking wines you've tried.</p>
+                        <button class="modern-btn add-wine-btn">
+                            <i class="fas fa-plus"></i> Add Your First Wine
+                        </button>
                     </div>
                 </div>
             </section>
@@ -557,9 +583,10 @@
     <script src="auth.js"></script>
     <script src="cloud-storage.js"></script>
     <script src="export.js"></script>
-    <script src="app-cloud.js"></script>
+    <script src="app-modern.js"></script>
     <script src="animation-enhancer.js"></script>
     <script src="background-circles.js"></script>
+    <script src="js/modules/modern-ui-components.js"></script>
     <script src="js/google-auth-fix.js"></script>
     <script>
         // Initialize Firebase with your config
