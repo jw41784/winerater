@@ -582,11 +582,35 @@ const App = {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Wait for authentication
+    console.log('DOM loaded, checking authentication state...');
+    
+    // Initialize the app differently based on auth state
+    let appInitialized = false;
+    
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in
+        console.log('Auth state changed:', user ? 'signed in' : 'signed out');
+        
+        if (user && !appInitialized) {
+            // User is signed in, initialize app
+            console.log('User signed in, initializing app...');
             App.init();
+            appInitialized = true;
+            
+            // Hide auth container, show app
+            const authContainer = document.getElementById('auth-container');
+            const appContainer = document.getElementById('app-container');
+            if (authContainer) authContainer.style.display = 'none';
+            if (appContainer) appContainer.style.display = 'flex';
+        } else if (!user) {
+            // User is signed out
+            console.log('User signed out');
+            appInitialized = false;
+            
+            // Show auth container, hide app
+            const authContainer = document.getElementById('auth-container');
+            const appContainer = document.getElementById('app-container');
+            if (authContainer) authContainer.style.display = 'flex';
+            if (appContainer) appContainer.style.display = 'none';
         }
     });
 });
