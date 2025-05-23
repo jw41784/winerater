@@ -1,0 +1,648 @@
+/* ================================================
+   Modern Components inspired by 21st.dev
+   Clean, minimal, and smooth
+   ================================================ */
+
+/* ------------------------------------------------
+   Modern Variables
+   ------------------------------------------------ */
+:root {
+  /* Modern color palette */
+  --modern-bg: #ffffff;
+  --modern-surface: #fafafa;
+  --modern-border: #e5e7eb;
+  --modern-text: #111827;
+  --modern-text-secondary: #6b7280;
+  --modern-accent: #8B0000;
+  --modern-accent-light: #dc2626;
+  --modern-success: #10b981;
+  --modern-warning: #f59e0b;
+  
+  /* Modern shadows */
+  --modern-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --modern-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --modern-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --modern-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --modern-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Modern transitions */
+  --modern-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --modern-transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --modern-bg: #0f0f0f;
+    --modern-surface: #1a1a1a;
+    --modern-border: #2a2a2a;
+    --modern-text: #f9fafb;
+    --modern-text-secondary: #9ca3af;
+  }
+}
+
+/* ------------------------------------------------
+   Modern Wine Card
+   ------------------------------------------------ */
+.modern-wine-card {
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--modern-transition);
+  cursor: pointer;
+  position: relative;
+}
+
+.modern-wine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--modern-shadow-xl);
+  border-color: transparent;
+}
+
+.modern-wine-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(139, 0, 0, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modern-wine-card:hover::before {
+  opacity: 1;
+}
+
+.modern-wine-image {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  overflow: hidden;
+}
+
+.modern-wine-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.modern-wine-card:hover .modern-wine-image img {
+  transform: scale(1.05);
+}
+
+.modern-wine-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.modern-wine-content {
+  padding: 1.5rem;
+}
+
+.modern-wine-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--modern-text);
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
+
+.modern-wine-subtitle {
+  font-size: 0.875rem;
+  color: var(--modern-text-secondary);
+  margin: 0 0 1rem;
+}
+
+.modern-wine-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.modern-wine-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--modern-text-secondary);
+}
+
+.modern-wine-stat i {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* ------------------------------------------------
+   Modern Rating Component
+   ------------------------------------------------ */
+.modern-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 12px;
+  transition: var(--modern-transition);
+}
+
+.modern-rating:hover {
+  border-color: var(--modern-accent);
+  box-shadow: var(--modern-shadow-md);
+}
+
+.modern-rating-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.modern-rating-star {
+  font-size: 1.125rem;
+  color: #fbbf24;
+  transition: transform 0.2s ease;
+}
+
+.modern-rating-star.filled {
+  animation: star-pop 0.4s ease;
+}
+
+.modern-rating-star:hover {
+  transform: scale(1.2);
+}
+
+.modern-rating-value {
+  font-weight: 600;
+  color: var(--modern-text);
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------
+   Modern Form Elements
+   ------------------------------------------------ */
+.modern-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.modern-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--modern-text);
+  margin-bottom: 0.5rem;
+}
+
+.modern-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--modern-bg);
+  border: 1px solid var(--modern-border);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--modern-text);
+  transition: var(--modern-transition);
+}
+
+.modern-input:focus {
+  outline: none;
+  border-color: var(--modern-accent);
+  box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+.modern-input::placeholder {
+  color: var(--modern-text-secondary);
+}
+
+/* Modern Select */
+.modern-select {
+  position: relative;
+}
+
+.modern-select select {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  background: var(--modern-bg);
+  border: 1px solid var(--modern-border);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--modern-text);
+  cursor: pointer;
+  transition: var(--modern-transition);
+  appearance: none;
+}
+
+.modern-select::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--modern-text-secondary);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------
+   Modern Button
+   ------------------------------------------------ */
+.modern-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--modern-accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--modern-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.modern-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--modern-shadow-lg);
+}
+
+.modern-btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.modern-btn-secondary {
+  background: transparent;
+  color: var(--modern-text);
+  border: 1px solid var(--modern-border);
+}
+
+.modern-btn-secondary:hover {
+  background: var(--modern-surface);
+  border-color: var(--modern-text-secondary);
+}
+
+/* ------------------------------------------------
+   Modern Stats Card
+   ------------------------------------------------ */
+.modern-stat-card {
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: var(--modern-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--modern-accent) 0%, transparent 70%);
+  opacity: 0.05;
+  transition: opacity 0.3s ease;
+}
+
+.modern-stat-card:hover::before {
+  opacity: 0.1;
+}
+
+.modern-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--modern-shadow-md);
+}
+
+.modern-stat-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--modern-bg);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--modern-accent);
+  margin-bottom: 1rem;
+}
+
+.modern-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--modern-text);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.modern-stat-label {
+  font-size: 0.875rem;
+  color: var(--modern-text-secondary);
+  font-weight: 500;
+}
+
+/* ------------------------------------------------
+   Modern Search Box
+   ------------------------------------------------ */
+.modern-search {
+  position: relative;
+  max-width: 400px;
+}
+
+.modern-search-input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 12px;
+  font-size: 0.875rem;
+  transition: var(--modern-transition);
+}
+
+.modern-search-input:focus {
+  outline: none;
+  border-color: var(--modern-accent);
+  background: var(--modern-bg);
+  box-shadow: var(--modern-shadow-md);
+}
+
+.modern-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--modern-text-secondary);
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------
+   Modern Toggle Switch
+   ------------------------------------------------ */
+.modern-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.modern-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.modern-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--modern-border);
+  transition: var(--modern-transition);
+  border-radius: 24px;
+}
+
+.modern-toggle-slider::before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  transition: var(--modern-transition);
+  border-radius: 50%;
+  box-shadow: var(--modern-shadow-sm);
+}
+
+.modern-toggle input:checked + .modern-toggle-slider {
+  background: var(--modern-accent);
+}
+
+.modern-toggle input:checked + .modern-toggle-slider::before {
+  transform: translateX(24px);
+}
+
+/* ------------------------------------------------
+   Modern Toast Notification
+   ------------------------------------------------ */
+.modern-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 12px;
+  box-shadow: var(--modern-shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 300px;
+  animation: slide-up 0.3s ease-out;
+  z-index: 1000;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modern-toast-icon {
+  font-size: 1.25rem;
+}
+
+.modern-toast-success .modern-toast-icon {
+  color: var(--modern-success);
+}
+
+.modern-toast-error .modern-toast-icon {
+  color: var(--modern-accent-light);
+}
+
+.modern-toast-content {
+  flex: 1;
+}
+
+.modern-toast-title {
+  font-weight: 600;
+  color: var(--modern-text);
+  margin-bottom: 0.25rem;
+}
+
+.modern-toast-message {
+  font-size: 0.875rem;
+  color: var(--modern-text-secondary);
+}
+
+/* ------------------------------------------------
+   Modern Loading Skeleton
+   ------------------------------------------------ */
+.modern-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--modern-surface);
+  border-radius: 8px;
+}
+
+.modern-skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  animation: skeleton-wave 2s infinite;
+}
+
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.modern-skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.modern-skeleton-title {
+  height: 1.5rem;
+  width: 60%;
+  margin-bottom: 0.75rem;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------
+   Modern Chip/Tag
+   ------------------------------------------------ */
+.modern-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  background: var(--modern-surface);
+  border: 1px solid var(--modern-border);
+  border-radius: 9999px;
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--modern-text);
+  transition: var(--modern-transition);
+}
+
+.modern-chip:hover {
+  background: var(--modern-bg);
+  border-color: var(--modern-accent);
+  color: var(--modern-accent);
+}
+
+.modern-chip-icon {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* ------------------------------------------------
+   Modern Empty State
+   ------------------------------------------------ */
+.modern-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.modern-empty-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--modern-surface);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2.5rem;
+  color: var(--modern-text-secondary);
+}
+
+.modern-empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--modern-text);
+  margin-bottom: 0.5rem;
+}
+
+.modern-empty-text {
+  font-size: 0.875rem;
+  color: var(--modern-text-secondary);
+  margin-bottom: 2rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------------------------
+   Responsive
+   ------------------------------------------------ */
+@media (max-width: 640px) {
+  .modern-wine-card {
+    border-radius: 12px;
+  }
+  
+  .modern-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+  
+  .modern-stat-card {
+    padding: 1.25rem;
+  }
+  
+  .modern-stat-value {
+    font-size: 1.5rem;
+  }
+}

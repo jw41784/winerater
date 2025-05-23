@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WineRater - Modern Components Demo</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles-modern-components.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--modern-bg);
+            color: var(--modern-text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-section {
+            margin-bottom: 4rem;
+        }
+        
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-subtitle {
+            font-size: 1.125rem;
+            color: var(--modern-text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .demo-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .demo-grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .demo-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header {
+            background: var(--modern-surface);
+            border: 1px solid var(--modern-border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #8B0000 0%, #CD5C5C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .code-snippet {
+            background: var(--modern-surface);
+            border: 1px solid var(--modern-border);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- Header -->
+        <div class="section-header">
+            <h1>Modern Components</h1>
+            <p class="demo-subtitle">Clean, minimal UI components inspired by modern design systems</p>
+        </div>
+
+        <!-- Wine Cards Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Wine Cards</h2>
+            <p class="demo-subtitle">Beautiful cards for displaying wine information</p>
+            
+            <div class="demo-grid demo-grid-3">
+                <!-- Wine Card 1 -->
+                <div class="modern-wine-card">
+                    <div class="modern-wine-image">
+                        <img src="https://images.unsplash.com/photo-1586370434639-0fe43b2d32e6?w=400&h=300&fit=crop" alt="Wine">
+                        <span class="modern-wine-badge">Red</span>
+                    </div>
+                    <div class="modern-wine-content">
+                        <h3 class="modern-wine-title">Château Margaux 2018</h3>
+                        <p class="modern-wine-subtitle">Margaux, Bordeaux</p>
+                        <div class="modern-wine-stats">
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-star"></i> 4.8
+                            </span>
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-dollar-sign"></i> 450
+                            </span>
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-calendar"></i> 2018
+                            </span>
+                        </div>
+                        <div class="modern-rating">
+                            <div class="modern-rating-stars">
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star"></i>
+                            </div>
+                            <span class="modern-rating-value">4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wine Card 2 -->
+                <div class="modern-wine-card">
+                    <div class="modern-wine-image">
+                        <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=400&h=300&fit=crop" alt="Wine">
+                        <span class="modern-wine-badge">White</span>
+                    </div>
+                    <div class="modern-wine-content">
+                        <h3 class="modern-wine-title">Cloudy Bay Sauvignon Blanc</h3>
+                        <p class="modern-wine-subtitle">Marlborough, New Zealand</p>
+                        <div class="modern-wine-stats">
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-star"></i> 4.5
+                            </span>
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-dollar-sign"></i> 28
+                            </span>
+                            <span class="modern-wine-stat">
+                                <i class="fas fa-calendar"></i> 2022
+                            </span>
+                        </div>
+                        <div class="modern-rating">
+                            <div class="modern-rating-stars">
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star modern-rating-star filled"></i>
+                                <i class="fas fa-star-half-alt modern-rating-star filled"></i>
+                            </div>
+                            <span class="modern-rating-value">4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wine Card 3 (Skeleton) -->
+                <div class="modern-wine-card">
+                    <div class="modern-wine-image modern-skeleton" style="height: 200px;"></div>
+                    <div class="modern-wine-content">
+                        <div class="modern-skeleton modern-skeleton-title"></div>
+                        <div class="modern-skeleton modern-skeleton-text" style="width: 70%;"></div>
+                        <div style="height: 1rem;"></div>
+                        <div class="modern-skeleton modern-skeleton-text"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Elements Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Form Elements</h2>
+            <p class="demo-subtitle">Clean and accessible form components</p>
+            
+            <div style="max-width: 600px;">
+                <div class="modern-form-group">
+                    <label class="modern-label">Wine Name</label>
+                    <input type="text" class="modern-input" placeholder="Enter wine name">
+                </div>
+                
+                <div class="modern-form-group">
+                    <label class="modern-label">Wine Type</label>
+                    <div class="modern-select">
+                        <select>
+                            <option>Select wine type</option>
+                            <option>Red</option>
+                            <option>White</option>
+                            <option>Rosé</option>
+                            <option>Sparkling</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="modern-form-group">
+                    <label class="modern-label">Search Wines</label>
+                    <div class="modern-search">
+                        <i class="fas fa-search modern-search-icon"></i>
+                        <input type="text" class="modern-search-input" placeholder="Search your collection...">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Buttons</h2>
+            <p class="demo-subtitle">Interactive button styles</p>
+            
+            <div class="demo-row">
+                <button class="modern-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Wine
+                </button>
+                
+                <button class="modern-btn modern-btn-secondary">
+                    <i class="fas fa-filter"></i>
+                    Filter
+                </button>
+                
+                <button class="modern-btn" style="background: var(--modern-success);">
+                    <i class="fas fa-check"></i>
+                    Saved
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats Cards Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Statistics Cards</h2>
+            <p class="demo-subtitle">Display key metrics beautifully</p>
+            
+            <div class="demo-grid demo-grid-4">
+                <div class="modern-stat-card">
+                    <div class="modern-stat-icon">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="modern-stat-value">124</div>
+                    <div class="modern-stat-label">Total Wines</div>
+                </div>
+                
+                <div class="modern-stat-card">
+                    <div class="modern-stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="modern-stat-value">4.6</div>
+                    <div class="modern-stat-label">Average Rating</div>
+                </div>
+                
+                <div class="modern-stat-card">
+                    <div class="modern-stat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="modern-stat-value">12</div>
+                    <div class="modern-stat-label">Countries</div>
+                </div>
+                
+                <div class="modern-stat-card">
+                    <div class="modern-stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="modern-stat-value">$8.5k</div>
+                    <div class="modern-stat-label">Total Value</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chips/Tags Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Tags & Chips</h2>
+            <p class="demo-subtitle">Categorize and filter content</p>
+            
+            <div class="demo-row">
+                <span class="modern-chip">
+                    <i class="fas fa-wine-glass modern-chip-icon"></i>
+                    Full-bodied
+                </span>
+                
+                <span class="modern-chip">
+                    <i class="fas fa-leaf modern-chip-icon"></i>
+                    Organic
+                </span>
+                
+                <span class="modern-chip">
+                    <i class="fas fa-award modern-chip-icon"></i>
+                    Award Winner
+                </span>
+                
+                <span class="modern-chip">
+                    <i class="fas fa-heart modern-chip-icon"></i>
+                    Favorite
+                </span>
+            </div>
+        </section>
+
+        <!-- Toggle & Controls Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Controls</h2>
+            <p class="demo-subtitle">Interactive control elements</p>
+            
+            <div class="demo-row" style="align-items: center;">
+                <label class="modern-toggle">
+                    <input type="checkbox" checked>
+                    <span class="modern-toggle-slider"></span>
+                </label>
+                <span>Enable notifications</span>
+            </div>
+            
+            <div class="demo-row" style="align-items: center;">
+                <label class="modern-toggle">
+                    <input type="checkbox">
+                    <span class="modern-toggle-slider"></span>
+                </label>
+                <span>Dark mode</span>
+            </div>
+        </section>
+
+        <!-- Empty State Section -->
+        <section class="demo-section">
+            <h2 class="demo-title">Empty States</h2>
+            <p class="demo-subtitle">Helpful placeholders when content is missing</p>
+            
+            <div style="background: var(--modern-surface); border: 1px solid var(--modern-border); border-radius: 16px; padding: 2rem;">
+                <div class="modern-empty-state">
+                    <div class="modern-empty-icon">
+                        <i class="fas fa-wine-glass-alt"></i>
+                    </div>
+                    <h3 class="modern-empty-title">No wines yet</h3>
+                    <p class="modern-empty-text">Start building your collection by adding your first wine. Track ratings, notes, and more!</p>
+                    <button class="modern-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Your First Wine
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toast Notifications -->
+        <div class="modern-toast modern-toast-success">
+            <i class="fas fa-check-circle modern-toast-icon"></i>
+            <div class="modern-toast-content">
+                <div class="modern-toast-title">Wine Added!</div>
+                <div class="modern-toast-message">Château Margaux has been added to your collection.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo interactions
+        document.querySelectorAll('.modern-rating-star').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = this.parentElement;
+                const stars = rating.querySelectorAll('.modern-rating-star');
+                const value = Array.from(stars).indexOf(this) + 1;
+                
+                stars.forEach((s, i) => {
+                    if (i < value) {
+                        s.classList.add('filled');
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('filled');
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+        });
+
+        // Toast demo
+        setTimeout(() => {
+            const toast = document.querySelector('.modern-toast');
+            toast.style.position = 'fixed';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 5000);
+        }, 2000);
+    </script>
+</body>
+</html>
