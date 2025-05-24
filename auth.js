@@ -10,6 +10,17 @@ const Auth = {
     // Current user
     currentUser: null,
     
+    // Helper method to show toast notifications
+    showToast: function(message, type = 'info') {
+        if (window.App && window.App.showToast) {
+            window.App.showToast(message, type);
+        } else if (type === 'error') {
+            alert('Error: ' + message);
+        } else {
+            console.log(message);
+        }
+    },
+    
     // Initialization
     init: function() {
         console.log('Initializing Auth module');
@@ -111,7 +122,7 @@ const Auth = {
                 this.hideLoading();
                 
                 // Show success message
-                WineRater.showToast('Account created successfully!', 'success');
+                this.showToast('Account created successfully!', 'success');
                 
                 // Close auth modal and show the app
                 this.closeAuthModal();
@@ -122,7 +133,7 @@ const Auth = {
                 this.hideLoading();
                 
                 // Show error message
-                WineRater.showToast('Error: ' + error.message, 'error');
+                this.showToast('Error: ' + error.message, 'error');
                 console.error("Registration error:", error);
             });
     },
@@ -138,7 +149,7 @@ const Auth = {
                 this.hideLoading();
                 
                 // Show success message
-                WineRater.showToast('Successfully logged in!', 'success');
+                this.showToast('Successfully logged in!', 'success');
                 
                 // Close auth modal and show the app
                 this.closeAuthModal();
@@ -149,7 +160,7 @@ const Auth = {
                 this.hideLoading();
                 
                 // Show error message
-                WineRater.showToast('Error: ' + error.message, 'error');
+                this.showToast('Error: ' + error.message, 'error');
                 console.error("Login error:", error);
             });
     },
@@ -186,7 +197,7 @@ const Auth = {
                 this.hideLoading();
                 
                 // Show success message
-                WineRater.showToast('Successfully logged in with Google!', 'success');
+                this.showToast('Successfully logged in with Google!', 'success');
                 
                 // Close auth modal and show the app
                 this.closeAuthModal();
@@ -198,11 +209,11 @@ const Auth = {
                 
                 // Show user-friendly error message
                 if (error.code === 'auth/popup-blocked') {
-                    WineRater.showToast('Google login popup was blocked. Please allow popups for this site.', 'error');
+                    this.showToast('Google login popup was blocked. Please allow popups for this site.', 'error');
                 } else if (error.code === 'auth/popup-closed-by-user') {
-                    WineRater.showToast('Google login was cancelled. Please try again.', 'info');
+                    this.showToast('Google login was cancelled. Please try again.', 'info');
                 } else {
-                    WineRater.showToast('Error logging in with Google: ' + error.message, 'error');
+                    this.showToast('Error logging in with Google: ' + error.message, 'error');
                 }
             });
     },
@@ -212,14 +223,14 @@ const Auth = {
         this.auth.signOut()
             .then(() => {
                 // Show success message
-                WineRater.showToast('Successfully logged out', 'success');
+                this.showToast('Successfully logged out', 'success');
                 
                 // Show the auth screen
                 this.showAuthScreen();
             })
             .catch(error => {
                 // Show error message
-                WineRater.showToast('Error: ' + error.message, 'error');
+                this.showToast('Error: ' + error.message, 'error');
                 console.error("Logout error:", error);
             });
     },
@@ -229,11 +240,11 @@ const Auth = {
         this.auth.sendPasswordResetEmail(email)
             .then(() => {
                 // Show success message
-                WineRater.showToast('Password reset email sent!', 'success');
+                this.showToast('Password reset email sent!', 'success');
             })
             .catch(error => {
                 // Show error message
-                WineRater.showToast('Error: ' + error.message, 'error');
+                this.showToast('Error: ' + error.message, 'error');
                 console.error("Password reset error:", error);
             });
     },
