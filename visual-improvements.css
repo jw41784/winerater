@@ -131,11 +131,7 @@ select,
     background-color: #f5f5f5;
 }
 
-.social-btn.google i {
-    font-size: 20px;
-    color: #4285F4;
-    margin-right: 8px;
-}
+/* Google button styling without icon */
 
 /* Dashboard Improvements */
 .dashboard-welcome {

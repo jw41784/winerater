@@ -74,15 +74,28 @@ const Auth = {
             });
         }
         
-        // Google Sign-in button
-        const googleSignInBtn = document.getElementById('google-signin');
-        console.log('Google Sign-in button found:', !!googleSignInBtn);
-        if (googleSignInBtn) {
-            googleSignInBtn.addEventListener('click', (e) => {
+        // Create and setup Google Sign-in button
+        const buttonContainer = document.getElementById('google-button-container');
+        if (buttonContainer) {
+            // Create a fresh button with no icons
+            const googleButton = document.createElement('button');
+            googleButton.type = 'button';
+            googleButton.id = 'google-signin';
+            googleButton.className = 'social-btn google';
+            googleButton.textContent = 'Sign in with Google';
+            
+            // Add click handler
+            googleButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 console.log('Google sign-in button clicked');
                 this.loginWithGoogle();
             });
+            
+            // Clear container and add button
+            buttonContainer.innerHTML = '';
+            buttonContainer.appendChild(googleButton);
+            
+            console.log('Google Sign-in button created');
         }
         
         // Logout button
@@ -199,9 +212,8 @@ const Auth = {
                 // Show success message
                 this.showToast('Successfully logged in with Google!', 'success');
                 
-                // Close auth modal and show the app
-                this.closeAuthModal();
-                this.showApp();
+                // The auth state change handler will handle showing the app
+                // Don't call showApp() here as it will be called by onSignIn()
             })
             .catch(error => {
                 this.hideLoading();
@@ -261,10 +273,25 @@ const Auth = {
         }
         
         // Initialize cloud data
-        CloudStorage.init(user.uid);
+        try {
+            if (window.CloudStorage && window.CloudStorage.init) {
+                CloudStorage.init(user.uid);
+            } else {
+                console.warn('CloudStorage not available');
+            }
+        } catch (error) {
+            console.error('CloudStorage init error:', error);
+            // Continue anyway - don't block auth flow
+        }
         
         // Show the app
         this.showApp();
+        
+        // Initialize App if available
+        if (window.App && window.App.init) {
+            console.log('Initializing App after auth...');
+            window.App.init();
+        }
     },
     
     // Handler for when user signs out
@@ -306,7 +333,14 @@ const Auth = {
     // Close the auth modal
     closeAuthModal: function() {
         const modal = document.getElementById('auth-modal');
-        modal.classList.remove('open');
+        if (modal) {
+            modal.classList.remove('open');
+        }
+        // Also hide auth container if no modal exists
+        const authContainer = document.getElementById('auth-container');
+        if (authContainer) {
+            authContainer.style.display = 'none';
+        }
     },
     
     // Show loading indicator
@@ -342,3 +376,6 @@ const Auth = {
         return !!this.currentUser;
     }
 };
+
+// Make Auth globally accessible
+window.Auth = Auth;

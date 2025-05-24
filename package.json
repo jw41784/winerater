@@ -1,0 +1,28 @@
+{
+  "name": "winerater",
+  "version": "1.0.0",
+  "description": "WineRater is a simple, elegant web application that helps wine enthusiasts track, rate, and manage their wine experiences.",
+  "main": "animation-enhancer.js",
+  "scripts": {
+    "test": "node puppeteer-test.js test",
+    "test:mock": "node puppeteer-test.js mock",
+    "test:dev": "node puppeteer-test.js dev",
+    "iterate": "node puppeteer-iterate.js",
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jw41784/winerater.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jw41784/winerater/issues"
+  },
+  "homepage": "https://github.com/jw41784/winerater#readme",
+  "devDependencies": {
+    "puppeteer": "^24.9.0"
+  }
+}

@@ -76,9 +76,8 @@
                 <div class="social-login">
                     <p>Or sign in with</p>
                     <div class="social-buttons">
-                        <button type="button" id="google-signin" class="social-btn google">
-                            <i class="fab fa-google"></i> Google
-                        </button>
+                        <!-- Google button will be created by JavaScript -->
+                        <div id="google-button-container"></div>
                     </div>
                 </div>
             </div>
@@ -587,6 +586,7 @@
     <script src="animation-enhancer.js"></script>
     <script src="background-circles.js"></script>
     <script src="js/modules/modern-ui-components.js"></script>
+    <script src="override-google-button.js"></script>
     <script>
         // Initialize Firebase with your config
         const firebaseConfig = {
@@ -606,8 +606,22 @@
         
         // Initialize app modules
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize authentication
-            Auth.init();
+            // Initialize authentication after a small delay to ensure Auth is loaded
+            if (window.Auth && window.Auth.init) {
+                console.log('Initializing Auth...');
+                Auth.init();
+            } else {
+                console.error('Auth not found! Waiting...');
+                // Try again after a short delay
+                setTimeout(function() {
+                    if (window.Auth && window.Auth.init) {
+                        console.log('Initializing Auth (delayed)...');
+                        Auth.init();
+                    } else {
+                        console.error('Auth still not available!');
+                    }
+                }, 100);
+            }
             
             // Setup auth tabs
             const authTabs = document.querySelectorAll('.auth-tab');
@@ -678,6 +692,5 @@
             }
         });
     </script>
-    <script src="fix-google-icon.js"></script>
 </body>
 </html>
