@@ -124,9 +124,6 @@ select,
     background-color: #ffffff;
     color: #757575;
     border: 1px solid #ddd;
-    position: relative;
-    padding-left: 48px;
-    text-align: center;
     transition: background-color 0.3s;
 }
 
@@ -135,10 +132,9 @@ select,
 }
 
 .social-btn.google i {
-    position: absolute;
-    left: 12px;
     font-size: 20px;
     color: #4285F4;
+    margin-right: 8px;
 }
 
 /* Dashboard Improvements */

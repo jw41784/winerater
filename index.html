@@ -76,7 +76,7 @@
                 <div class="social-login">
                     <p>Or sign in with</p>
                     <div class="social-buttons">
-                        <button type="button" id="google-signin" class="social-btn google" onclick="Auth.loginWithGoogle()">
+                        <button type="button" id="google-signin" class="social-btn google">
                             <i class="fab fa-google"></i> Google
                         </button>
                     </div>
@@ -586,10 +586,7 @@
     <script src="app-modern.js"></script>
     <script src="animation-enhancer.js"></script>
     <script src="background-circles.js"></script>
-    <script src="js/modern-ui-fix.js"></script>
     <script src="js/modules/modern-ui-components.js"></script>
-    <script src="js/google-auth-fix.js"></script>
-    <script src="js/auth-complete-fix.js"></script>
     <script>
         // Initialize Firebase with your config
         const firebaseConfig = {
@@ -681,5 +678,6 @@
             }
         });
     </script>
+    <script src="fix-google-icon.js"></script>
 </body>
 </html>
